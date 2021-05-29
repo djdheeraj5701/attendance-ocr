@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Attendance</title>
+    </head>
+    <body>
+        <div>
+            <h2> Results: </h2>
+            | id | year | division | lecture | date | absent |
+            <ul>
+                {% for i in results %}
+                <li style="font-size: medium;" class="mark">
+                    {{i.id}} | {{i.year}} | {{i.div}} | {{i.lec}} | {{i.date}} | {{i.absent}} |
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h2> Absents: </h2>
+            | roll | count | attendance
+            <ul>
+                {% for i in absents %}
+                <li style="font-size: medium;" class="mark">
+                    {{i}} | {{absents[i]}}| {{100-((absents[i]*100)/total_lecture)}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h2>total lectures: {{total_lecture}}</h2>
+            <h2> Lecwise: </h2>
+            | lec | avg. absentees |
+            <ul>
+                {% for i in lecwise %}
+                <li style="font-size: medium;" class="mark">
+                    {{i}} | {{lecwise[i][0]/lecwise[i][1]}}|
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>

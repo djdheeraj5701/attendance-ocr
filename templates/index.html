@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Attendance</title>
+    </head>
+    <body>
+        <h1>Statistics: </h1>
+        <div>
+            <form method="post" action="{{url_for('statistics')}}">
+                <input type="text" name="y" required>
+                <input type="text" name="d" required>
+                <input type="submit" value="Stats">
+            </form>
+        </div>
+        <div>
+            <h2> Results: </h2>
+            | id | year | division | lecture | date | absent |
+            <ul>
+                {% for i in results %}
+                <li style="font-size: medium;" class="mark">
+                    {{i.id}} | {{i.year}} | {{i.div}} | {{i.lec}} | {{i.date}} | {{i.absent}} |
+                    <a href="{{url_for('delete', id=i.id)}}">Delete</a>
+                    <form action="{{url_for('update', id=i.id)}}" method="POST">
+                        <input type="text" name="req" required>
+                        <input type="submit" value="Update" class="button">
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
